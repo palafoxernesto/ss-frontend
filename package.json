@@ -1,0 +1,47 @@
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "now"
+  },
+  "author": "Gustavo Adolfo Ramírez Apache <beerndev.co>",
+  "license": "private",
+  "dependencies": {
+    "autoprefixer": "^7.0.0",
+    "babel-plugin-module-resolver": "^2.7.0",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "elemental": "^0.6.1",
+    "es6-promise": "^4.1.1",
+    "fullpage-react": "^2.0.3",
+    "glob": "^7.1.1",
+    "install": "^0.10.1",
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^2.3.0-alpha1",
+    "node-sass": "^4.5.2",
+    "normalize.css": "^7.0.0",
+    "npm": "^4.6.1",
+    "postcss-easy-import": "^2.0.0",
+    "postcss-loader": "^1.3.3",
+    "raw-loader": "^0.5.1",
+    "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-transition-group": "^15.5.2",
+    "react-dom": "^15.5.4",
+    "react-modal": "^1.7.7",
+    "react-responsive-carousel": "^3.1.17",
+    "react-slick": "^0.14.11",
+    "react-transition-group": "^1.1.3",
+    "reactstrap": "^4.6.2",
+    "sass-loader": "^6.0.3",
+    "slick-carousel": "^1.6.0",
+    "styled-components": "^1.4.6",
+    "styled-jsx": "^1.0.5"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "now": "^5.0.0",
+    "style-loader": "^0.18.1"
+  }
+}
