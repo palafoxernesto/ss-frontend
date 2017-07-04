@@ -33,7 +33,6 @@ export default class Slider extends Component{
     .then( (r) =>{
       console.log(r);
     });
-
   }
   handleImageChange(ev){
     ev.preventDefault;
@@ -41,7 +40,6 @@ export default class Slider extends Component{
     let file = ev.target.files[0];
 
     this.url = file ;
-
   }
 
   render(){
@@ -88,15 +86,14 @@ export default class Slider extends Component{
     							  <div className="col-md-6">
 
     					       <div className="new-item-anuncio">
-                     <span className="inputs-title">Agregar color</span><br/>
-                     <div className="inputs-group">
-                       <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
-                     </div>
+                       <span className="inputs-title">Agregar color</span><br/>
+                       <div className="inputs-group">
+                         <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
+                       </div>
                        <h2>Imagen slider</h2>
                        <button>Seleccionar archivo</button>
                        {/* <span className="size-description">El tamaño debe ser de 1280 x 580px</span>*/}
                        <input type="file" onChange={ (res) => { this.handleImageChange(res) }} />
-
                      </div>
                     </div>
                   </div>

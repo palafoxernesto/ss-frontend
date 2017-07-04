@@ -23,12 +23,14 @@ font-size: 20px;
 border-style: none;
 `
 
+
 export default class SingleProduct extends Component{
   constructor() {
     super();
 
     this.state = {
       modalIsOpen: false,
+      data: [],
     };
 
     this.openModal = this.openModal.bind(this);
@@ -42,13 +44,33 @@ export default class SingleProduct extends Component{
   closeModal() {
     this.setState({modalIsOpen: false});
   }
+  componentDidMount(){
+    fetch('http://localhost:1337/posts/595b0da940eabbd0213d6fa7')
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then((data) => {
+        console.log(data)
+        this.setState({data: data})
+      });
+    })
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
+
+  };
 
   render(){
     return(
       <div className="container single-desktop">
         <div className="row product">
           <div className="col-md-12 title-single ">
-            <h1>Mesa n°2</h1>
+            <h1>{this.state.data.nombre}</h1>
           </div>
           <div className="col-md-8 col-xs-12 padding-sigle">
             <div className="row">
@@ -63,17 +85,16 @@ export default class SingleProduct extends Component{
             <div className="description">
               <h3>Descripción</h3>
               <p>
-                Mesa de pino con acabado natural y ensambles invisibles.
-                Ideal para interiores y exteriores,resitente al clima
+                {this.state.data.descripcion}
               </p>
               <h3>Medidas</h3>
               <p>
-                2 m de largo x 1.5 m de ancho x .8 m de altura
+                {this.state.data.medidas}
               </p>
               <div className="color-group">
                 <h3>Color</h3>
                 <div className="color-swatches">
-                  <span><label className="color-1"></label></span>
+                  <span><label style = { { background: `${this.state.data.color}` } }></label></span>
                   <span><label className="color-2"></label></span>
                   <span><label className="color-3"></label></span>
                 </div>

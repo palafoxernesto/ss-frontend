@@ -16,7 +16,7 @@ export default class Header extends Component{
     super(props);
     this.state = {data: []};
   }
-  componentWillMount(){
+  componentDidMount(){
     fetch('http://localhost:1337/category')
     .then((response) => {
       if (response.status !== 200) {
@@ -47,7 +47,7 @@ export default class Header extends Component{
             <div className="col-md-12 col-xs-12">
               <ul className="ListMenu">
                 {this.state.data.map((categoria)=>
-                  <li  key={categoria.id}><Link href={`/posts/category/${categoria.slu}`}><a>{categoria.name}</a></Link><  /li>
+                  <li  key={categoria.id}><Link href={`/posts/category/${categoria.slu}`}><a>{categoria.name}</a></Link></li>
                 )}
               </ul>
             </div>
