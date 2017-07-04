@@ -23,9 +23,12 @@ export default class Slider extends Component{
     color: '',
     descripcion: '',
     medidas: '',
+<<<<<<< HEAD
 
     url:'',
 
+=======
+>>>>>>> a5511f71c730fdcd2141a4979b81deb2c395bccf
     user_id: '1',
   }
 
@@ -36,8 +39,11 @@ export default class Slider extends Component{
     .then( (r) =>{
       console.log(r);
     });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a5511f71c730fdcd2141a4979b81deb2c395bccf
   }
   handleImageChange(ev){
     ev.preventDefault;
@@ -45,8 +51,11 @@ export default class Slider extends Component{
     let file = ev.target.files[0];
 
     this.url = file ;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a5511f71c730fdcd2141a4979b81deb2c395bccf
   }
 
   render(){
@@ -93,6 +102,7 @@ export default class Slider extends Component{
     							  <div className="col-md-6">
 
     					       <div className="new-item-anuncio">
+<<<<<<< HEAD
                      <span className="inputs-title">Agregar color</span><br/>
                      <div className="inputs-group">
                        <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
@@ -102,12 +112,21 @@ export default class Slider extends Component{
                        <input type="file" onChange= { (res) => { console.log(res.target) }} />
                        <span className="size-description">El tamaño debe ser de 1280 x 580px</span>
 
+=======
+                       <span className="inputs-title">Agregar color</span><br/>
+                       <div className="inputs-group">
+                         <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
+                       </div>
+>>>>>>> a5511f71c730fdcd2141a4979b81deb2c395bccf
                        <h2>Imagen slider</h2>
                        <button>Seleccionar archivo</button>
                        {/* <span className="size-description">El tamaño debe ser de 1280 x 580px</span>*/}
                        <input type="file" onChange={ (res) => { this.handleImageChange(res) }} />
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a5511f71c730fdcd2141a4979b81deb2c395bccf
                      </div>
                     </div>
                   </div>
