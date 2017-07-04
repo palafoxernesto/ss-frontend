@@ -16,23 +16,36 @@ const agnesiStyle = {
 }
 export default class Slider extends Component{
 
+  url = ''
   state = {
     category_name : '',
     nombre: '',
     color: '',
     descripcion: '',
     medidas: '',
+
     url:'',
+
     user_id: '1',
   }
 
   handleSubmit(ev){
     ev.preventDefault();
 
-    createProduct( this.state )
+    createProduct( this.state, this.url )
     .then( (r) =>{
       console.log(r);
     });
+
+
+  }
+  handleImageChange(ev){
+    ev.preventDefault;
+    let reader = new FileReader();
+    let file = ev.target.files[0];
+
+    this.url = file ;
+
 
   }
 
@@ -84,9 +97,17 @@ export default class Slider extends Component{
                      <div className="inputs-group">
                        <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
                      </div>
+
                        <h2>Imagen</h2>
                        <input type="file" onChange= { (res) => { console.log(res.target) }} />
                        <span className="size-description">El tamaño debe ser de 1280 x 580px</span>
+
+                       <h2>Imagen slider</h2>
+                       <button>Seleccionar archivo</button>
+                       {/* <span className="size-description">El tamaño debe ser de 1280 x 580px</span>*/}
+                       <input type="file" onChange={ (res) => { this.handleImageChange(res) }} />
+
+
                      </div>
                     </div>
                   </div>
