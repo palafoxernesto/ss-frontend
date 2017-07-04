@@ -4,8 +4,8 @@ const URL = `http://localhost:1337`;
 
 var cabecezaras = new Headers();
 
+  // CREAR PRODUCTO
 const createProduct = (data, url) => {
-  // data['category_name'] = "Perros";
 
   let formData = new FormData();
       formData.append('nombre', data.nombre);
@@ -29,7 +29,29 @@ const createProduct = (data, url) => {
   })
 
 }
+  // CREAR CATEGORIA
+const createCategory = (data, image) => {
+
+  let formData = new FormData();
+
+      formData.append('name', data.name);
+      formData.append('image', image);
+
+  return fetch(`${URL}/category`, {
+    method: "POST",
+    headers: cabecezaras,
+    body: formData
+  })
+  .then( (r) => {
+    // console.log(r);
+    return r.json();
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+}
 
 export {
-  createProduct
+  createProduct,
+  createCategory
 }
