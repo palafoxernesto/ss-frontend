@@ -16,7 +16,7 @@ export default class Header extends Component{
     super(props);
     this.state = {data: []};
   }
-  componentWillMount(){
+  componentDidMount(){
     fetch('http://localhost:1337/category')
     .then((response) => {
       if (response.status !== 200) {

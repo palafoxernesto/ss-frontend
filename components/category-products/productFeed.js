@@ -57,7 +57,6 @@ export default class ProductFeed extends Component{
       this.setState({
           categoryId: nextProps.categoryFeed
       })
-
       this.searchProducts();
     }
 
