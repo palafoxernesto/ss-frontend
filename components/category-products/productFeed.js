@@ -1,59 +1,92 @@
 import React, { Component } from 'react'
 import fetch from 'isomorphic-fetch'
 import styled from 'styled-components'
+import { getProductsByCategory } from '../../pages/api-admin'
 
+const URL = `http://localhost:1337`;
 
 export default class ProductFeed extends Component{
   constructor(props){
     super(props);
-    this.state = {data: []};
+    this.state = {
+      data: [],
+      categoryId: ''
+    };
   }
-  componentDidMount(){
-    fetch('http://localhost:1337/posts')
-    .then((response) => {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-        response.status);
-        return;
-      }
+  componentWillMount(){
+    // console.log(this.state.categoryId);
+  //   fetch('http://localhost:1337/posts')
+  //   .then((response) => {
+  //     if (response.status !== 200) {
+  //       console.log('Looks like there was a problem. Status Code: ' +
+  //       response.status);
+  //       return;
+  //     }
+  //
+  //     // Examine the text in the response
+  //     response.json().then((data) => {
+  //       console.log(data)
+  //       this.setState({data: data})
+  //     });
+  //   }
+  // )
+  // .catch((err) => {
+  //   console.log('Fetch Error :-S', err);
+  // });
+  }
+  
+  searchProducts(){
+    getProductsByCategory(this.state.categoryId)
+    .then( (r) => {
+      console.log(r);
+      // ACA EL RESULTADO LO DEBES GUARDAR EN DATA, NO SE SI TENGAS QUE MANIPULAR LA DATA CON EL METODO ".json()"
+      // this.setState({
+      //   data:r.arraydeproductos
+      // })
 
-      // Examine the text in the response
-      response.json().then((data) => {
-        console.log(data)
-        this.setState({data: data})
-      });
+    })
+    .catch( (err) => {
+      console.log(err);
+    })
+  }
+  componentWillReceiveProps(nextProps){
+    console.log('recibio');
+
+    if( nextProps != this.props ){
+      // console.log(nextProps);
+      this.setState({
+          categoryId: nextProps.categoryFeed
+      })
+      this.searchProducts();
     }
-  )
-  .catch((err) => {
-    console.log('Fetch Error :-S', err);
-  });
-}
+
+  }
   render(){
-  return(
-    <div className="container">
-    <div className="row product">
-    <div className="col-md-6 col-xs-6 feed-box">
-    <div><img src="static/mesa1.png"/></div>
-    <div className="feed-description"><span>Mesa N°1</span><hr/></div>
-    <div className="feed-single-redirection"><a href="#">Ver</a></div>
-    </div>
-    <div className="col-md-6 col-xs-6 feed-box">
-    <div><img src="static/mesa2.png"/></div>
-    <div className="feed-description"><span>Mesa N°2</span><hr/></div>
-    <div className="feed-single-redirection"><a href="#">Ver</a></div>
-    </div>
-    <div className="col-md-6 col-xs-6 feed-box">
-    <div><img src="static/mesa3.png"/></div>
-    <div className="feed-description"><span>Mesa N°3</span><hr/></div>
-    <div className="feed-single-redirection"><a href="#">Ver</a></div>
-    </div>
-    <div className="col-md-6 col-xs-6 feed-box">
-    <div><img src="static/mesa4.png"/></div>
-    <div className="feed-description"><span>Mesa N°4</span><hr/></div>
-    <div className="feed-single-redirection"><a href="#">Ver</a></div>
-    </div>
-    </div>
-    </div>
+      return(
+        <div className="container">
+        <div className="row product">
+        <div className="col-md-6 col-xs-6 feed-box">
+        <div><img src="static/mesa1.png"/></div>
+        <div className="feed-description"><span>Mesa N°1</span><hr/></div>
+        <div className="feed-single-redirection"><a href="#">Ver</a></div>
+        </div>
+        <div className="col-md-6 col-xs-6 feed-box">
+        <div><img src="static/mesa2.png"/></div>
+        <div className="feed-description"><span>Mesa N°2</span><hr/></div>
+        <div className="feed-single-redirection"><a href="#">Ver</a></div>
+        </div>
+        <div className="col-md-6 col-xs-6 feed-box">
+        <div><img src="static/mesa3.png"/></div>
+        <div className="feed-description"><span>Mesa N°3</span><hr/></div>
+        <div className="feed-single-redirection"><a href="#">Ver</a></div>
+        </div>
+        <div className="col-md-6 col-xs-6 feed-box">
+        <div><img src="static/mesa4.png"/></div>
+        <div className="feed-description"><span>Mesa N°4</span><hr/></div>
+        <div className="feed-single-redirection"><a href="#">Ver</a></div>
+        </div>
+        </div>
+        </div>
   )
 }
 }
