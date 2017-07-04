@@ -19,7 +19,7 @@ export default class HeaderProducts extends Component{
         <span className="icon-back-white"><img src="../static/back-icon-white.svg"/></span>
         <div className="row header-products">
           <div className="col-md-12">
-            <Header/>
+            <Header handleCategory={ this.props.handleCategory } />
           </div>
           <div className="col-md-6 col-xs-12">
             <h1>Mesas</h1>

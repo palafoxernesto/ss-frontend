@@ -29,6 +29,23 @@ const createProduct = (data, url) => {
   })
 
 }
+
+  // LISTA DE PRODUCTOS POR CATEGORIA
+const getProductsByCategory = (id) => {
+
+    return fetch(`${URL}/posts/category/${id}`, {
+      method: "POST",
+      headers: cabecezaras,
+      body: null
+    })
+    .then( (r) => {
+      return r.json();
+    } )
+    .catch ( (err) => {
+      console.log(err);
+    })
+}
+
   // CREAR CATEGORIA
 const createCategory = (data, image) => {
 
@@ -53,5 +70,6 @@ const createCategory = (data, image) => {
 
 export {
   createProduct,
-  createCategory
+  createCategory,
+  getProductsByCategory
 }

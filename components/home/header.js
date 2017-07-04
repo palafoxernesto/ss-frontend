@@ -27,7 +27,7 @@ export default class Header extends Component{
 
       // Examine the text in the response
       response.json().then((data) => {
-        console.log(data)
+        console.log('data del servicio category ',data)
         this.setState({data: data})
       });
     }
@@ -47,7 +47,13 @@ export default class Header extends Component{
             <div className="col-md-12 col-xs-12">
               <ul className="ListMenu">
                 {this.state.data.map((categoria)=>
-                  <li  key={categoria.id}><Link href={`/posts/category/${categoria.slu}`}><a>{categoria.name}</a></Link><  /li>
+                  <li  key={categoria.id}>
+                    {/* <Link > */}
+                      <a
+                        onClick={ () => { this.props.handleCategory( categoria.id ) } }
+                        >{categoria.name}</a>
+                    {/* </Link> */}
+                  </li>
                 )}
               </ul>
             </div>
