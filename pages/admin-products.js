@@ -22,7 +22,7 @@ export default class Slider extends Component{
     color: '',
     descripcion: '',
     medidas: '',
-    url:'ninguna',
+    url:'',
     user_id: '1',
   }
 
@@ -33,7 +33,7 @@ export default class Slider extends Component{
     .then( (r) =>{
       console.log(r);
     });
-    
+
   }
 
   render(){
@@ -84,8 +84,8 @@ export default class Slider extends Component{
                      <div className="inputs-group">
                        <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
                      </div>
-                       <h2>Imagen slider</h2>
-                       <button>Seleccionar archivo</button>
+                       <h2>Imagen</h2>
+                       <input type="file" onChange= { (res) => { console.log(res.target) }} />
                        <span className="size-description">El tamaño debe ser de 1280 x 580px</span>
                      </div>
                     </div>

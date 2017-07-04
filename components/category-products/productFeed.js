@@ -8,7 +8,7 @@ export default class ProductFeed extends Component{
     super(props);
     this.state = {data: []};
   }
-  componentWillMount(){
+  componentDidMount(){
     fetch('http://localhost:1337/posts')
     .then((response) => {
       if (response.status !== 200) {
