@@ -68,8 +68,40 @@ const createCategory = (data, image) => {
   })
 }
 
+// LOGIN
+const login = (data) => {
+  return fetch(`${URL}/login`, {
+    method: "POST",
+    headers: cabecezaras,
+    body: JSON.stringify(data)
+  })
+  .then( (r) => {
+    console.log(r);
+  })
+  .catch( (err) =>{
+    console.log(err);
+  })
+}
+
+// LOGIN
+const signUp = (data) => {
+  return fetch(`${URL}/signup`,{
+    method: "POST",
+    headers: cabecezaras,
+    body: JSON.stringify(data)
+  })
+  .then( (r) => {
+    console.log(r);
+  })
+  .catch( (err) =>{
+    console.log(err);
+  })
+}
+
 export {
   createProduct,
   createCategory,
-  getProductsByCategory
+  getProductsByCategory,
+  login,
+  signUp
 }
