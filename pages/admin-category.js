@@ -5,7 +5,7 @@ import Header from '../components/home/header'
 import Footer from '../components/home/footer'
 import { Carousel } from 'react-responsive-carousel'
 import MobilAgnesi from '../components/agnesi-casa/agnesi-project-mobil'
-
+import fetch from 'isomorphic-fetch'
 import { createCategory } from './api-admin.js'
 
 const imgLogoStyle = {
@@ -16,9 +16,14 @@ const agnesiStyle = {
 }
 export default class Slider extends Component{
 
+  constructor(props){
+    super(props);
+    this.state = {data: []};
+  }
   image = ''
   state = {
     name: '',
+    subcategorie: []
   }
 
   handleSubmit(ev){
@@ -38,6 +43,35 @@ export default class Slider extends Component{
     this.image = file ;
 
   }
+  subcategorieFunction(ev){
+    ev.preventDefault;
+    if(document.getElementById('hijo').checked){
+      document.getElementById("select-padre").removeAttribute('disabled');
+    }else{
+      document.getElementById("select-padre").setAttribute("disabled", "");;
+
+    }
+  }
+  componentDidMount(){
+    fetch('http://localhost:1337/category')
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then((data) => {
+        console.log('data del servicio category ',data)
+        this.setState({data: data})
+      });
+    }
+  )
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
+  }
   render(){
     return(
       <main id="admin-anuncios">
@@ -49,7 +83,7 @@ export default class Slider extends Component{
   					</div>
   					<div className="col-md-12">
   						<div className="row width-slider">
-                <div className="col-md-12"><h1 className="title-admin-menu">Sliders</h1></div>
+                <div className="col-md-12"><h1 className="title-admin-menu">Agregar Categoria</h1></div>
                 <form className="col-md-12" onSubmit={ (ev) => { this.handleSubmit(ev) }}>
                   <div className="row">
                     <div className="col-md-6">
@@ -58,6 +92,22 @@ export default class Slider extends Component{
                         <span className="inputs-title">Nombre</span><br/>
                         <div className="inputs-group">
                           <input type="text" value={ this.state.name } onChange={ (res) => { this.setState({ name: res.target.value }) } } />
+                          <span> Max. 30 caracteres</span>
+                        </div>
+                        <span className="inputs-title">Categoria</span><br/>
+                        <div className="inputs-group">
+                        <input type="radio" id="padre" name="gender" value="male" onClick={ this.subcategorieFunction } />
+                        <label for="padre">Padre</label>
+
+                        <input type="radio" id="hijo" name="gender" value="female" onClick={ this.subcategorieFunction }/>
+                        <label for="hijo">Hijo</label>
+                        <select id="select-padre"disabled name="select" required value={ this.state.category_name } onChange={ (res) => { this.setState( { category_name: res.target.value} ) }}>
+                          <option selected hidden>Seleccionar categoría padre</option>
+                          {this.state.data.map((categoria)=>
+                            <option key={categoria.id} value={categoria.name}>{categoria.name}</option>
+                          )}
+                        </select>
+
                           <span> Max. 30 caracteres</span>
                         </div>
                         <span className="inputs-title">Archivo</span><br/>

@@ -15,6 +15,15 @@ const agnesiStyle = {
   width:'20%'
 }
 export default class Slider extends Component{
+  constructor(props){
+    super(props);
+    this.state = {data: []};
+  }
+  image = ''
+  state = {
+    name: '',
+    subcategorie: []
+  }
 
   url = ''
   state = {
@@ -23,11 +32,7 @@ export default class Slider extends Component{
     color: '',
     descripcion: '',
     medidas: '',
-
-
     url:'',
-
-
     user_id: '1',
   }
 
@@ -45,7 +50,27 @@ export default class Slider extends Component{
     let reader = new FileReader();
     let file = ev.target.files[0];
 
-    this.url = file ;
+      this.url = file ;
+  }
+  componentDidMount(){
+    fetch('http://localhost:1337/category')
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then((data) => {
+        console.log('data del servicio category ',data)
+        this.setState({data: data})
+      });
+    }
+  )
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
   }
 
   render(){
@@ -71,12 +96,13 @@ export default class Slider extends Component{
                           <span> Max. 30 caracteres</span>
                         </div>
                         <div className="inputs-group">
-                          <select name="select" required value={ this.state.category_name } onChange={ (res) => { this.setState( { category_name: res.target.value} ) }}>
-                            <option selected hidden>Seleccionar categoría hijo</option>
-                            <option value="sofas">Sofas</option>
-                            <option value="sillones">Sillones</option>
-                            <option value="mesas">Mesas</option>
-                          </select>
+                        <select id="select-padre"name="select" required value={ this.state.category_name } onChange={ (res) => { this.setState( { category_name: res.target.value} ) }}>
+                          <option selected hidden>Seleccionar categoría padre</option>
+                          {this.state.data.map((categoria)=>
+                            <option key={categoria.id} value={categoria.name}>{categoria.name}</option>
+                          )}
+                        </select>
+
                         </div>
                         <span className="inputs-title">Descripción</span><br/>
                         <div className="inputs-group">
@@ -98,20 +124,11 @@ export default class Slider extends Component{
                        <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
                      </div>
 
-                       <h2>Imagen</h2>
-                       <input type="file" onChange= { (res) => { console.log(res.target) }} />
-                       <span className="size-description">El tamaño debe ser de 1280 x 580px</span>
 
-
-                       <span className="inputs-title">Agregar color</span><br/>
-                       <div className="inputs-group">
-                         <input type="text" onChange={ (res) => { this.setState({ color: res.target.value }) }}/>
-                       </div>
-
-                       <h2>Imagen slider</h2>
+                       <h2>Imagen </h2>
                        <button>Seleccionar archivo</button>
                        {/* <span className="size-description">El tamaño debe ser de 1280 x 580px</span>*/}
-
+                       <input type="file" onChange={ (res) => { this.handleImageChange(res) }} />
 
 
 
