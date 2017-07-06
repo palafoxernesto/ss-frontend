@@ -14,12 +14,12 @@ class AdminLogin extends Component {
 		          </div>
 		          <div className="col-md-12 form-admin-login">
 		         			<ul>
-										<li>Usuarios</li>
-										<li>Categorias</li>
-										<li>Muebles</li>
-										<li>Sliders</li>
-										<li>Anuncios</li>
-										<li>Agnesi casa</li>
+										<li><Link href="/admin-users"><a>Usuarios</a></Link></li>
+										<li><Link href="/admin-category"><a>Categorias</a></Link></li>
+										<li><Link href="/admin-products"><a>Muebles</a></Link></li>
+										<li><Link href="/admin-sliders"><a>Sliders</a></Link></li>
+										<li><Link href="/admin-anuncios"><a>Anuncios</a></Link></li>
+										<li><Link href="/agnesi-admin"><a>Agnesi casa</a></Link></li>
 									</ul>
 		          </div>
 		        </div>
