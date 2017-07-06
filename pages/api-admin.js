@@ -67,7 +67,27 @@ const createCategory = (data, image) => {
     console.log(err);
   })
 }
+//CREAR USUARIO
+const createUser = (data) => {
 
+  let formData = new FormData();
+
+      formData.append('email', data.email);
+      formData.append('password', data.password);
+
+  return fetch(`${URL}/signup`, {
+    method: "POST",
+    headers: cabecezaras,
+    body: formData
+  })
+  .then( (r) => {
+    // console.log(r);
+    return r.json();
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+}
 // LOGIN
 const login = (data) => {
   return fetch(`${URL}/login`, {
@@ -101,6 +121,7 @@ const signUp = (data) => {
 export {
   createProduct,
   createCategory,
+  createUser,
   getProductsByCategory,
   login,
   signUp

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Headss from 'components/head'
 
 class AdminLogin extends Component {
+	
 	render() {
 			return (
 				<div id="admin">
@@ -12,6 +13,7 @@ class AdminLogin extends Component {
 		          <div className="col-md-3 logo">
 		            <img src="../static/syslogoblack.png"/>
 		          </div>
+							<div className="col-md-12"><h1 className="title-admin-menu">Menú</h1></div>
 		          <div className="col-md-12 form-admin-login">
 		         			<ul>
 										<li><Link href="/admin-users"><a>Usuarios</a></Link></li>

@@ -1,34 +1,60 @@
+import React, { Component } from 'react'
+import Link from 'next/link'
 import Headss from 'components/head'
 
-export default () => (
-    <main id="admin-user">
-      <Headss/>
-      <div className="container">
-				<div className="row">
-					<div className="col-md-3 back-page">
-						<div className="back"><a href="#"><img src="../static/back.svg"/><span>atrás</span></a></div>
-					</div>
-					<div className="col-md-12">
-						<div className="row">
-							<div className="col-md-10 menu-admin">
-								<h1 className="title-admin-menu">Usuarios</h1>
-                <div className="add-user"><span className="add-user-icon">Agregar usuario</span><img src="../static/add.svg"/></div>
-								<nav className="nav-admin">
-									<ul>
-                    <li><div className="delete-icon"><img src="../static/x-icon.svg"/></div><a href="#">usuario 1</a></li>
-										<li><div className="delete-icon"><img src="../static/x-icon.svg"/></div><a href="#">usuario 2</a></li>
-										<li><div className="delete-icon"><img src="../static/x-icon.svg"/></div><a href="#">usuario 3</a></li>
-										<li><div className="delete-icon"><img src="../static/x-icon.svg"/></div><a href="#">usuario 4</a></li>
-										<li><div className="delete-icon"><img src="../static/x-icon.svg"/></div><a href="#">usuario 5</a></li>
-										<li><div className="delete-icon"><img src="../static/x-icon.svg"/></div><a href="#">usuario 6</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-    </main>
 
+export default class AdminUsers extends Component{
+  constructor(props){
+    super(props);
+    this.state = {data: []};
+  }
+  componentDidMount(){
+    fetch('http://localhost:1337/users')
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        return;
+      }
 
-)
+      // Examine the text in the response
+      response.json().then((data) => {
+        console.log('data del servicio users ',data)
+        this.setState({data: data})
+      });
+    })
+
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
+  }
+  render(){
+    return(
+      <main id="admin-user">
+        <Headss/>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3 back-page">
+              <div className="back"><a href="#"><img src="../static/back.svg"/><span>atrás</span></a></div>
+            </div>
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-md-10 menu-admin">
+                  <h1 className="title-admin-menu">Usuarios</h1>
+                  <div className="add-user"><span className="add-user-icon">Agregar usuario</span><Link href="/admin-users-add"><a><img src="../static/add.svg"/></a></Link></div>
+                  <nav className="nav-admin">
+                    <ul>
+                      {this.state.data.map((usuario)=>
+                        <li  key={usuario.id}><div className="delete-icon"><img src="../static/x-icon.svg"/></div>{usuario.email}</li>
+                      )}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    )
+  }
+}
