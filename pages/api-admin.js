@@ -90,12 +90,12 @@ const createAnuncio = (url, url2 ) => {
 }
 
 // CREAR CATEGORIA
-const createCategory = (data, image) => {
+const createCategory = (data, sub) => {
 
   let formData = new FormData();
 
       formData.append('name', data.name);
-      formData.append('image', image);
+      formData.append('sub', data.sub);
 
   return fetch(`${URL}/category`, {
     method: "POST",

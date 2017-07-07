@@ -19,21 +19,30 @@ export default class Slider extends Component{
 
   constructor(props){
     super(props);
-    this.state = {data: []};
+    this.state = {data: [],
+      name: '',
+      subcategoria: ''
+  };
   }
   image = ''
-  state = {
-    name: '',
-    subcategorie: []
-  }
+  
 
   handleSubmit(ev){
     ev.preventDefault();
 
-    createCategory( this.state)
-    .then( (r) =>{
-      console.log(r);
-    });
+    if(document.getElementById('hijo').checked){
+      createCategory( {name: this.state.subcategoria , sub:this.state.name})
+        .then( (r) =>{
+          console.log(r);
+        });
+    }else{
+      createCategory( {name: this.state.name , sub:null})
+        .then( (r) =>{
+          console.log(r);
+        });
+    }
+
+    
 
   }
   handleImageChange(ev){
@@ -49,7 +58,7 @@ export default class Slider extends Component{
     if(document.getElementById('hijo').checked){
       document.getElementById("select-padre").removeAttribute('disabled');
     }else{
-      document.getElementById("select-padre").setAttribute("disabled", "");;
+      document.getElementById("select-padre").setAttribute("disabled", "");
 
     }
   }
@@ -97,12 +106,12 @@ export default class Slider extends Component{
                         </div>
                         <span className="inputs-title">Categoria</span><br/>
                         <div className="inputs-group">
-                        <input type="radio" id="padre" name="gender" value="male" onClick={ this.subcategorieFunction } />
+                        <input type="radio" id="padre" name="gender" onClick={ this.subcategorieFunction } />
                         <label for="padre">Padre</label>
 
-                        <input type="radio" id="hijo" name="gender" value="female" onClick={ this.subcategorieFunction }/>
+                        <input type="radio" id="hijo" name="gender" onClick={ this.subcategorieFunction }/>
                         <label for="hijo">Hijo</label>
-                        <select id="select-padre"disabled name="select" required value={ this.state.category_name } onChange={ (res) => { this.setState( { category_name: res.target.value} ) }}>
+                        <select id="select-padre"disabled name="select" required  onChange={ (res) => { this.setState( { subcategoria: res.target.value} ) }}>
                           <option selected hidden>Seleccionar categoría padre</option>
                           {this.state.data.map((categoria)=>
                             <option key={categoria.id} value={categoria.name}>{categoria.name}</option>
