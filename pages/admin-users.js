@@ -35,7 +35,7 @@ export default class AdminUsers extends Component{
         <div className="container">
           <div className="row">
             <div className="col-md-3 back-page">
-              <div className="back"><a href="#"><img src="../static/back.svg"/><span>atrás</span></a></div>
+              <div className="back"><Link href="/admin-menu"><a><img src="../static/back.svg"/><span>atrás</span></a></Link></div>
             </div>
             <div className="col-md-12">
               <div className="row">

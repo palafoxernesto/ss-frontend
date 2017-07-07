@@ -45,8 +45,51 @@ const getProductsByCategory = (id) => {
       console.log(err);
     })
 }
+//CREANDO SLIDER
+const createSlider = (data, url) => {
 
-  // CREAR CATEGORIA
+  let formData = new FormData();
+      formData.append('titulo', data.titulo);
+      formData.append('subtitulo', data.subtitulo);
+      formData.append('sliderlink', data.sliderlink);
+      formData.append('url', url);
+
+  return fetch(`${URL}/sliders`,{
+    method: "POST",
+    headers: cabecezaras,
+    body: formData
+  })
+  .then( (r) => {
+    return r.json()
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+
+}
+
+//CREANDO ANUNCIO
+const createAnuncio = (url, url2 ) => {
+
+  let formData = new FormData();
+      formData.append('url', url);
+      formData.append('url2', url2);
+
+  return fetch(`${URL}/anuncios`,{
+    method: "POST",
+    headers: cabecezaras,
+    body: formData
+  })
+  .then( (r) => {
+    return r.json()
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+
+}
+
+// CREAR CATEGORIA
 const createCategory = (data, image) => {
 
   let formData = new FormData();
@@ -121,7 +164,9 @@ const signUp = (data) => {
 export {
   createProduct,
   createCategory,
+  createAnuncio,
   createUser,
+  createSlider,
   getProductsByCategory,
   login,
   signUp

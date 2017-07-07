@@ -5,6 +5,7 @@ import Header from '../components/home/header'
 import Footer from '../components/home/footer'
 import { Carousel } from 'react-responsive-carousel'
 import MobilAgnesi from '../components/agnesi-casa/agnesi-project-mobil'
+import Link from 'next/link'
 
 import { createProduct } from './api-admin.js'
 
@@ -14,7 +15,7 @@ const imgLogoStyle = {
 const agnesiStyle = {
   width:'20%'
 }
-export default class Slider extends Component{
+export default class ProductForm extends Component{
   constructor(props){
     super(props);
     this.state = {data: []};
@@ -80,7 +81,7 @@ export default class Slider extends Component{
         <div className="container">
   				<div className="row">
   					<div className="col-md-3 back-page">
-  						<div className="back"><a href="#"><img src="../static/back.svg"/><span>atrás</span></a></div>
+  						<div className="back"><Link href="/admin-menu"><a><img src="../static/back.svg"/><span>atrás</span></a></Link></div>
   					</div>
   					<div className="col-md-12">
   						<div className="row width-slider">

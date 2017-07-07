@@ -7,6 +7,7 @@ import { Carousel } from 'react-responsive-carousel'
 import MobilAgnesi from '../components/agnesi-casa/agnesi-project-mobil'
 import fetch from 'isomorphic-fetch'
 import { createUser } from './api-admin.js'
+import Link from 'next/link'
 
 const imgLogoStyle = {
   width:'100%',
@@ -37,7 +38,7 @@ export default class Slider extends Component{
         <div className="container">
   				<div className="row">
   					<div className="col-md-3 back-page">
-  						<div className="back"><a href="#"><img src="../static/back.svg"/><span>atrás</span></a></div>
+  						<div className="back"><Link href="/admin-users"><a><img src="../static/back.svg"/><span>atrás</span></a></Link></div>
   					</div>
   					<div className="col-md-12">
   						<div className="row width-slider">
