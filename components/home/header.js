@@ -4,6 +4,7 @@ import fetch from 'isomorphic-fetch'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import axios from 'axios'
 
 const imgLogoStyle = {
   width:'100%',
@@ -12,6 +13,9 @@ const agnesiStyle = {
   width:'20%'
 }
 export default class Header extends Component{
+
+
+
   constructor(props){
     super(props);
     this.state = {data: []};
@@ -48,11 +52,11 @@ export default class Header extends Component{
               <ul className="ListMenu">
                 {this.state.data.map((categoria)=>
                   <li  key={categoria.id}>
-                    {/* <Link > */}
-                      <a
-                        onClick={ () => { this.props.handleCategory( categoria.id ) } }
-                        >{categoria.name}</a>
-                    {/* </Link> */}
+                   <Link as={`/products/${categoria.id}`} href={`/products?id=${categoria.id}`} >
+                      <a>
+                        {categoria.name}
+                      </a>
+                    </Link>
                   </li>
                 )}
               </ul>

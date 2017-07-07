@@ -9,6 +9,7 @@
   "license": "private",
   "dependencies": {
     "autoprefixer": "^7.0.0",
+    "axios": "^0.16.2",
     "babel-plugin-module-resolver": "^2.7.0",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "elemental": "^0.6.1",
@@ -36,7 +37,8 @@
     "sass-loader": "^6.0.3",
     "slick-carousel": "^1.6.0",
     "styled-components": "^1.4.6",
-    "styled-jsx": "^1.0.5"
+    "styled-jsx": "^1.0.5",
+    "unfetch": "^3.0.0"
   },
   "devDependencies": {
     "css-loader": "^0.28.4",
