@@ -52,7 +52,7 @@ export default class Header extends Component{
               <ul className="ListMenu">
                 {this.state.data.map((categoria)=>
                   <li  key={categoria.id}>
-                   <Link as={`/products/${categoria.id}`} href={`/products?id=${categoria.id}`} >
+                   <Link  href={{ pathname: 'products', query: { id: `${categoria.id}`} }} >
                       <a>
                         {categoria.name}
                       </a>

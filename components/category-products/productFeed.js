@@ -34,33 +34,15 @@ export default class ProductFeed extends Component{
   //   console.log('Fetch Error :-S', err);
   // });
   }
-  
-  searchProducts(){
-    getProductsByCategory(this.state.categoryId)
-    .then( (r) => {
-      console.log(r);
-      // ACA EL RESULTADO LO DEBES GUARDAR EN DATA, NO SE SI TENGAS QUE MANIPULAR LA DATA CON EL METODO ".json()"
-      // this.setState({
-      //   data:r.arraydeproductos
-      // })
 
-    })
-    .catch( (err) => {
-      console.log(err);
-    })
+
+  static async getInitialProps ({ query}) {
+    const identificador = query.id;
+
+      console.log(identificador);
+      return { identificador }
   }
-  componentWillReceiveProps(nextProps){
-    console.log('recibio');
 
-    if( nextProps != this.props ){
-      // console.log(nextProps);
-      this.setState({
-          categoryId: nextProps.categoryFeed
-      })
-      this.searchProducts();
-    }
-
-  }
   render(){
       return(
         <div className="container">
